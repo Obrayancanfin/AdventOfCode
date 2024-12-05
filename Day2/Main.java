@@ -36,7 +36,7 @@ public class Main {
                     }
                 listNumber=new ArrayList<>();
             }
-            System.out.println("Safe = "+counterSafe );
+            System.out.println("Part1 Safe = "+counterSafe );
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
