@@ -20,7 +20,6 @@ public class Main {
                             interpreted.append(Integer.toString(interger).repeat(number));
                             interger++;
                         }
-                        System.out.println(interger);
                     }else {
                        interpreted.append(".".repeat(number));
                     }
@@ -33,5 +32,38 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
+
+        String interpretedString = String.valueOf(interpreted);
+        String interpretedStringReverseStriped = String.valueOf(interpreted.reverse()).replace(".","");
+
+        System.out.println("interpretedReverseStrip = "+ interpretedStringReverseStriped);
+        System.out.println("Avant: "+interpretedString);
+
+
+        for (int i = 0; i < interpretedStringReverseStriped.length(); i++) {
+            interpretedString=interpretedString.replaceFirst("\\.", String.valueOf(interpretedStringReverseStriped.charAt(i)));
+            interpretedString=replaceLastOccurrence(interpretedString,String.valueOf(interpretedStringReverseStriped.charAt(i)),".");
+        }
+        interpretedString=interpretedString.replaceAll("\\.","");
+        System.out.println("intrepetedSolved : " + interpretedString);
+        Long resultat = 0L;
+
+        for (int i = 0; i < interpretedString.length(); i++) {
+           resultat+= (interpretedString.charAt(i) - '0' )*i;
+            System.out.println(resultat);
+        }
+        System.out.println("resultat : "+resultat);
+    }
+
+    public static String replaceLastOccurrence(String original, String target, String replacement) {
+        int lastIndex = original.lastIndexOf(target);
+        if (lastIndex == -1) {
+            return original; // Target string not found
+        }
+        // Build the new string
+        return original.substring(0, lastIndex)
+                + replacement
+                + original.substring(lastIndex + target.length());
     }
 }
